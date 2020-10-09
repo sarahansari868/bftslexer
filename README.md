@@ -25,6 +25,9 @@ If you want to test with various brainfuck program inputs I would recommend gett
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
+## GitHub
+[https://github.com/sarahansari868/bftslexer](https://github.com/sarahansari868/bftslexer)
+
 ## Author
 Sarah Ansari\
 Georgia State University\
