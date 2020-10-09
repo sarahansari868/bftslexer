@@ -9,6 +9,11 @@ The source code of the main program is in ```main.ts``` file
 
 You will need the node package manager and node installed.
 
+for first time:
+```bash
+npm install
+```
+
 ```bash
 npm start
 ```
