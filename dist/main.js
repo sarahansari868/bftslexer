@@ -18,7 +18,7 @@ function main(bfProgram) {
 function lex(bfSymbols) {
     var loop_initializer = 0;
     var programStacks = [];
-    var current_position = 0;
+    var current_stack_pos = 0;
     while (loop_initializer != (bfSymbols === null || bfSymbols === void 0 ? void 0 : bfSymbols.length)) {
         var symbol = "";
         if (bfSymbols === null || bfSymbols === void 0 ? void 0 : bfSymbols.length) {
@@ -26,24 +26,24 @@ function lex(bfSymbols) {
         }
         switch (symbol) {
             case "+":
-                space[current_position]++;
+                space[current_stack_pos]++;
                 break;
             case "-":
-                space[current_position]--;
+                space[current_stack_pos]--;
                 break;
             case ".":
-                process.stdout.write(String.fromCharCode(space[current_position]));
+                process.stdout.write(String.fromCharCode(space[current_stack_pos]));
                 break;
             case ",":
                 break;
             case ">":
-                current_position++;
+                current_stack_pos++;
                 break;
             case "<":
-                current_position--;
+                current_stack_pos--;
                 break;
             case "[":
-                if (space[current_position]) {
+                if (space[current_stack_pos]) {
                     programStacks.push(loop_initializer);
                 }
                 else {
@@ -54,7 +54,7 @@ function lex(bfSymbols) {
                 }
                 break;
             case "]":
-                if (space[current_position]) {
+                if (space[current_stack_pos]) {
                     var pos = programStacks.pop();
                     loop_initializer = pos;
                     continue;
