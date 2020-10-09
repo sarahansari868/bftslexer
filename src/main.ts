@@ -17,6 +17,9 @@ fs.readFile(path.join(__dirname, file), (err:Error, content:string) => {
 
 function main(bfProgram: string): void {
   let parsedInput:RegExpMatchArray | null = bfProgram.match(brainFuckGrammar);
+  console.log("the broken down lexmes are: ");
+  if(parsedInput)
+  process.stdout.write(parsedInput.toString() + '\n');
   lex(parsedInput);
 }
 
