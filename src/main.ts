@@ -23,7 +23,7 @@ function main(bfProgram: string): void {
 function lex(bfSymbols: RegExpMatchArray | null) {
   let loop_initializer: number | any = 0;
   let programStacks = [];
-  let current_position = 0;
+  let current_stack_pos = 0;
   while (loop_initializer != bfSymbols?.length) {
     let symbol:string = "";
     if(bfSymbols?.length) {
@@ -31,24 +31,24 @@ function lex(bfSymbols: RegExpMatchArray | null) {
     }
     switch (symbol) {
       case "+":
-        space[current_position]++;
+        space[current_stack_pos]++;
         break;
       case "-":
-        space[current_position]--;
+        space[current_stack_pos]--;
         break;
       case ".":
-        process.stdout.write(String.fromCharCode(space[current_position]));
+        process.stdout.write(String.fromCharCode(space[current_stack_pos]));
         break;
       case ",":
         break;
       case ">":
-        current_position++;
+        current_stack_pos++;
         break;
       case "<":
-        current_position--;
+        current_stack_pos--;
         break;
       case "[":
-        if (space[current_position]) {
+        if (space[current_stack_pos]) {
           programStacks.push(loop_initializer);
         } else {
           if(bfSymbols)
@@ -58,7 +58,7 @@ function lex(bfSymbols: RegExpMatchArray | null) {
         }
         break;
       case "]":
-        if (space[current_position]) {
+        if (space[current_stack_pos]) {
           let pos = programStacks.pop();
           loop_initializer = pos;
           continue;
